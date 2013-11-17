@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Control Panel</title>
+	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		var ws = null;
+		if('WebSocket' in window)
+			ws = new WebSocket("ws://130.243.179.168:8080/websocket/mywebsocket.do");
+		else if('MozWebSocket' in window)
+			ws = new MozWebSocket("ws://130.243.179.168:8080/websocket/mywebsocket.do");
+		else
+			alert("websocket not supported in this browser!!");
+
+		ws.onopen = function(){
+			alert("websocket succeed opening!!");
+		};
+		ws.onclose = function(){
+			alert("websocket succeed closing!!");
+		};
+
+		$(window).ready(function(){
+			$("#play").click(function(){
+				//alert("send play");
+				ws.send("play");
+			});
+			$("#pause").click(function(){
+				//alert("send pause");
+				ws.send("pause");
+			});
+		});
+	</script>
+</head>
+<center>
+	<h1>Control Panel</h1>
+	<input id="play" type="button" value="play"/>
+	<input id="pause" type="button" value="pause"/>
+</center>
+</html>

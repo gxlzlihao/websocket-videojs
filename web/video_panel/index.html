@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video Panel</title>
+	<link href="//vjs.zencdn.net/4.2/video-js.css" rel="stylesheet"/>
+	<script type="text/javascript" src="//vjs.zencdn.net/4.2/video.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		var ws = null;
+		var video = null;
+
+		$(window).ready(function(){
+			_V_("example_div_video").ready(function(){
+				video = this;
+			});
+		});
+
+		if('WebSocket' in window)
+			ws = new WebSocket("ws://130.243.179.168:8080/websocket/mywebsocket.do");
+		else if('MozWebSocket' in window)
+			ws = new MozWebSocket("ws://130.243.179.168:8080/websocket/mywebsocket.do");
+		else
+			alert("websocket not supported in this browser!!");
+
+		ws.onopen = function(){
+			alert("websocket succeed opening!!");
+		};
+		ws.onclose = function(){
+			alert("websocket succeed closing!!");
+		};
+
+		ws.onmessage = function(evt){
+			var msg = evt.data;
+			if(msg=="play")
+				if(video==null)
+					alert("video is null!!");
+				else
+					video.play();
+			else if(msg=="pause")
+				if(video==null)
+					alert("video is null!!");
+				else
+					video.pause();
+			else
+				alert("can not understand this message!");
+		};
+		
+	</script>
+</head>
+<center>
+	<section class="container wrap">
+	  <video id="example_div_video" class="video-js vjs-default-skin" controls preload="auto" width="511" height="382" poster="http://dev.swinginsam.com/_files/testvid_01.jpg" data-setup="{}">  
+	    <source src="http://dev.swinginsam.com/_files/testvid_01.webm"  type="video/webm"/>
+	  </video>
+	</section>
+</center>
+</html>
