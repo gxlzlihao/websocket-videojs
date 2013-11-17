@@ -7,4 +7,6 @@ The server is implemented in tomcat, using websocket servlet to distribute the r
 * netbeans-7.3
 * MacOs-10.7.5
 
-Hope you enjoy this project! Before you start running this project, dont forget to change the ip address in video page and control page to let them find the server.  
+When you run this project, you should copy the control panel and video panel to your own place. And run them on different servers.
+
+Hope you enjoy this project! Before you start running this project, dont forget to change the ip address in video page and control page to let them find the server.

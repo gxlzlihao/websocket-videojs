@@ -4,7 +4,9 @@
 	<title>Control Panel</title>
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript">
-		var ws = null;
+	  var ws = null;
+
+	  //before running the script, please change the ip address to your own
 		if('WebSocket' in window)
 			ws = new WebSocket("ws://130.243.179.168:8080/websocket/mywebsocket.do");
 		else if('MozWebSocket' in window)
